@@ -2,11 +2,11 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var AgendumSchema = new Schema({
-  eventID: {
+  eventId: {
     type: String,
     required: true
   },
-  userID: {
+  userId: {
     type: String,
     required: true
   }

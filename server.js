@@ -8,6 +8,8 @@ const passwordless = require('passwordless')
 const MongoStore = require('passwordless-mongostore')
 const mongoose = require('mongoose')
 
+const config = require("./config.json")
+
 // Get routes
 const authRoutes = require("./routes/authRoutes")
 const agendaRoutes = require("./routes/agendaRoutes")
@@ -30,17 +32,17 @@ mongoose.connect(url, {
 })
 
 // Config auth
-passwordless.init(new MongoStore(url))
+passwordless.init(new MongoStore(url),{ 
+    allowTokenReuse: true 
+})
+
 passwordless.addDelivery(
     function(tokenToSend, uidToSend, recipient, callback) {
-        var host = 'localhost:4000'
         email.send({
             to: recipient,
-            from: 'noreply@example.com',
-            subject: 'Sign into Utopia',
-            text:    'Hello!\nYou asked us to send you a magic link to see the exclusive Utopia content: http://' 
-            + host + '/?token=' + tokenToSend + '&uid=' 
-            + encodeURIComponent(uidToSend), 
+            from: config.replyTo,
+            subject: config.subject,
+            text: `${config.message} \n\nhttp://${config.redirectTo}/?token=${tokenToSend}&uid=${encodeURIComponent(uidToSend)}`,
         }, function(err, message) { 
             if(err) {
                 console.log(err)
@@ -56,7 +58,9 @@ server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({extended: false}))
 server.use(cookieParser())
 server.use(session({
-    secret: process.env.SESSION_SECRET
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true
 }))
 server.use(passwordless.sessionSupport())
 

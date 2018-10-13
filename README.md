@@ -31,7 +31,11 @@ export DATABASE=''
 To do
 -----
 
-* Build out `/agenda` routes
+* ~Build out `/agenda` routes~
+* ~Pull out other useful config into separate file (eg. reply-to address in emails)~
+
 * Better email template
 * Prepare for web deployment via Zeit Now (get rid of hardcoded localhosts and come up with a better way to supply env config)
-* Pull out other useful config into separate file (eg. reply-to address in emails)
+* Consider most informative API responses for `/agenda` routes
+* Add check to POST endpoint to prevent duplicating existing agenda items?
+* Production-ready session management

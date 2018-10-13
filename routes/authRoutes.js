@@ -15,9 +15,9 @@ router.post('/',
             }, (err, document)=>{
                 if (document){
                     console.log("😃  User found, sending magic link")
-                    callback(null, document)
+                    callback(null, document.id)
                 } else {
-                    console.log("😒 User not found. Email will NOT be sent")
+                    console.log("😒  User not found. Email will NOT be sent")
                     callback(null, null)
                 }
             })
