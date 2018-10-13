@@ -28,6 +28,8 @@ export SESSION_SECRET=''
 export DATABASE=''
 ```
 
+There is also customisable config data stored in `config.json`.
+
 To do
 -----
 

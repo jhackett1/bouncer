@@ -32,9 +32,6 @@ router.post('/', (req, res)=>{
 
 // DELETE the agenda item specified in the query
 router.delete('/', (req, res)=>{
-    console.log("DELETING")
-    console.log("Event ID supplied is:", req.body)
-    console.log("\n\n\n", req.user, "\n\n\n")
     Agendum.deleteOne({
         eventId: req.body.eventId,
         userId: req.user.id
