@@ -38,4 +38,4 @@ To do
 * Prepare for web deployment via Zeit Now (get rid of hardcoded localhosts and come up with a better way to supply env config)
 * Consider most informative API responses for `/agenda` routes
 * Add check to POST endpoint to prevent duplicating existing agenda items?
-* Production-ready session management
+* Decide whether it should be stateful or stateless
