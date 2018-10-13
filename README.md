@@ -1,5 +1,5 @@
-Eventful auth server
-====================
+Bouncer
+=======
 
 Lean passwordless authentication server and API for Eventful app.
 
