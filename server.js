@@ -1,13 +1,12 @@
 const express = require('express')
-const email = require('@sendgrid/mail')
 const bodyParser = require('body-parser')
-const mongoose = require('mongoose')
-const passwordless = require('passwordless')
-const MongoStore = require('passwordless-mongostore')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
-const fileUpload = require('express-fileupload')
+const email = require('@sendgrid/mail')
+const passwordless = require('passwordless')
+const MongoStore = require('passwordless-mongostore')
+const mongoose = require('mongoose')
 
 // Get routes
 const authRoutes = require("./routes/authRoutes")
@@ -55,7 +54,6 @@ const server = express()
 server.use(logger('dev'))
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({extended: false}))
-server.use(fileUpload())
 server.use(cookieParser())
 server.use(session({
     secret: process.env.SESSION_SECRET
@@ -65,20 +63,8 @@ server.use(passwordless.sessionSupport())
 // Every route will accept and attempt to validate a token
 server.use(passwordless.acceptToken())
 
-// server.post('/fuck', (req, res)=>{
-//     console.log(req.body)
-//     res.send(req.body)
-// })
-
-server.use((req, res, next)=>{
-    console.log("Request body: ", req.body)
-    next()
-})
-
 // Bind routes to URLs
 server.use('/auth', authRoutes)
-
-
 server.use(passwordless.restricted())
 server.use('/agenda', agendaRoutes)
 

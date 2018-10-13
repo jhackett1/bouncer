@@ -1,12 +1,16 @@
 Bouncer
 =======
 
-Lean passwordless authentication server and API for Eventful app.
+Lean passwordless authentication server and API for Eventful experiences.
+
+Most of an Eventful experience is public. This app enables the bits that aren't.
 
 It's an Express/MongoDB app exposing two endpoints:
 
 * `/auth` for authenticating users with passwordless magic links sent via email
 * `/agenda` for adding and removing users' agenda items to the mongo database so that they can sync across devices
+
+**Read about the [intended auth flow](https://github.com/jhackett1/bouncer/wiki/Authentication-flow).**
 
 Running locally
 ---------------
@@ -29,3 +33,5 @@ To do
 
 * Build out `/agenda` routes
 * Better email template
+* Prepare for web deployment via Zeit Now (get rid of hardcoded localhosts and come up with a better way to supply env config)
+* Pull out other useful config into separate file (eg. reply-to address in emails)

@@ -7,7 +7,6 @@ const Agendum = require('../models/Agendum')
 // GET list of all agenda items for current user
 router.get('/',
     // TODO
-    
 )
 
 // POST a new agenda item with the event ID supplied in the query
