@@ -33,11 +33,15 @@ There is also customisable config data stored in `config.json`.
 To do
 -----
 
+More detailed to do [on the board](https://trello.com/b/qIayECis/eventful)
+
 * ~Build out `/agenda` routes~
 * ~Pull out other useful config into separate file (eg. reply-to address in emails)~
-
 * Better email template
 * Prepare for web deployment via Zeit Now (get rid of hardcoded localhosts and come up with a better way to supply env config)
 * Consider most informative API responses for `/agenda` routes
-* Add check to POST endpoint to prevent duplicating existing agenda items?
 * Decide whether it should be stateful or stateless
+
+* Add check to POST endpoint to prevent duplicating existing agenda items?
+* Remove need for bulk import and rely on Eventbrite API calls instead?
+* Add dedicated `/auth/callback` route that just verifies token and returns user object?
