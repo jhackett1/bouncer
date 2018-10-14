@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const passwordless = require('passwordless')
+const eventbrite = require('../utils/eventbrite-client')
 
 // Get the model
 const Attendee = require('../models/Attendee')
@@ -9,18 +10,19 @@ const Attendee = require('../models/Attendee')
 router.post('/', 
     passwordless.requestToken(
         function(user, delivery, callback, req) {
+
             // Test whether the email exists in attendees table
-            Attendee.findOne({
-                email: user
-            }, (err, document)=>{
-                if (document){
-                    console.log("😃  User found, sending magic link")
-                    callback(null, document.id)
-                } else {
-                    console.log("😒  User not found. Email will NOT be sent")
-                    callback(null, null)
-                }
-            })
+            // Attendee.findOne({
+            //     email: user
+            // }, (err, document)=>{
+            //     if (document){
+            //         console.log("😃  User found, sending magic link")
+            //         callback(null, document.id)
+            //     } else {
+            //         console.log("😒  User not found. Email will NOT be sent")
+            //         callback(null, null)
+            //     }
+            // })
         }),
     function(req, res) {
         // Success
